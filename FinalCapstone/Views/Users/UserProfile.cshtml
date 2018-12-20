@@ -1,0 +1,40 @@
+﻿@model UserProfileViewModel
+
+@{
+    ViewData["Title"] = "UserProfile";
+}
+
+<h2>User Profile</h2>
+<section id="one" class="wrapper style2">
+    <div class="inner">
+        <div class="row4">
+            <h4>Carbs Goals: @Model.GoalCarbs g per day</h4>
+        </div>
+        <div class="row4">
+            <h4>Protein Goals: @Model.GoalProtein g per day</h4>
+        </div>
+        <div class="row4">
+            <h4>Fat Goals: @Model.GoalFat g per day</h4>
+        </div>
+
+        <div class="row4">
+            <button onclick="location.href='@Url.Action("UpdateUserGoals", "Users")';">Update Goals</button>
+            <br />
+        </div>
+
+        <div class="row4">
+            <button onclick="location.href='@Url.Action("ChangePassword", "Users")';">Change Password</button>
+            <br />
+        </div>
+
+        <div class="row4">
+            <button onclick="location.href='@Url.Action("Favorites", "Users")';">My Favorites</button> 
+            <br />
+        </div>
+
+        <div class="row4">
+            <button onclick="location.href='@Url.Action("Logout", "Users")';">Log Out</button>
+        </div>
+
+    </div>
+</section>

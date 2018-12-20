@@ -1,0 +1,32 @@
+﻿@model UserProfileViewModel
+@{
+    ViewData["Title"] = "Update User Goals";
+}
+
+<h2>Update User Goals</h2>
+
+
+@using (Html.BeginForm("UpdateUserGoals", "Users", FormMethod.Post))
+{
+    <section id="one" class="wrapper style2">
+        <div class="row4">
+            @Html.TextBoxFor(m => m.GoalCarbs, "{0:#.#}", new { placeholder = "Carbs Goal" })
+        </div>
+        <div class="row4">
+            @Html.TextBoxFor(m => m.GoalFat, "{0:#.#}", new { placeholder = "Fat Goal" })
+        </div>
+        <div class="row4">
+            @Html.TextBoxFor(m => m.GoalProtein, "{0:#.#}", new { placeholder = "Protein Goal" })
+        </div>
+        <div class="row4">
+            <button>Update Goals</button>
+        </div>
+        <div>
+            <h4>
+                For info on how to calculate your macros, please go to
+                <a href="https://healthyeater.com/flexible-dieting-calculator" target="_blank">healthyeater.com</a>
+            </h4>
+        </div>
+
+    </section>
+}

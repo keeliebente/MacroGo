@@ -1,0 +1,21 @@
+﻿@model FoodItemViewModel
+@{
+    ViewData["Title"] = "Delete Food Item";
+}
+
+<h2>Delete Menu Item</h2>
+<section id="one" class="wrapper style2">
+    <div class="inner">
+        <form asp-action="DeleteFoodItem" asp-controller="Food" method="post">
+            <label asp-for="FoodId">Unique ID of menu item</label>
+            <input asp-for="FoodId" />
+
+            <button class="button button1" type="submit">Submit</button>
+        </form>
+    </div>
+</section>
+
+
+
+
+

@@ -1,0 +1,80 @@
+﻿@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>@ViewData["Title"] - MacroGo</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/js/TeamLimaLocationAPI.js"></script>
+
+</head>
+<body>
+    <!-- Header -->
+    <header id="header" class="alt">
+        <div class="logo"><h3><a asp-controller="Home" asp-action="Index">MacroGo</a></h3></div>
+        <a href="#menu">Menu</a>
+
+    </header>
+
+    <!-- Nav -->
+    <nav id="menu">
+        @*<ul class="links">
+            <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-area="" asp-controller="Food" asp-action="AddFoodItem">Add Food</a></li>
+            <li><a asp-area="" asp-controller="Food" asp-action="DisplayFoodItems">Display Your Items</a></li>
+            <li><a asp-area="" asp-controller="Users" asp-action="Register">Register</a></li>
+            <li><a asp-area="" asp-controller="Users" asp-action="Login">Login</a></li>
+
+        </ul>*@
+        @{
+            if (Context.Session.GetString(SessionKeys.AdminFlag) == "1")
+            {
+                Html.RenderPartial("_AdminNav");
+            }
+            else if(Context.Session.GetString(SessionKeys.Username) != null)
+            {
+                Html.RenderPartial("_AuthenticatedNav");
+            }
+            else
+            {
+                Html.RenderPartial("_AnonymousNav");
+            }
+        }
+
+    </nav>
+
+    <!-- Banner -->
+    <section class="banner full">
+        <article>
+            <img src="~/images/burger-bg.jpg" alt="burger">
+            <div class="inner">
+                <header>
+                    <h2>MacroGo</h2>
+                    <p>Keep your macros while out and about</p>
+                </header>
+            </div>
+        </article>
+
+    </section>
+    @RenderBody()
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="copyright">
+            © 2018 - MacroGo
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/jquery.scrollex.min.js"></script>
+    <script src="~/js/skel.min.js"></script>
+    <script src="~/js/util.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/TeamLimaLocationAPI.js"></script>
+
+</body>
+</html>

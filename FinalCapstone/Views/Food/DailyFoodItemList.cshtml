@@ -1,0 +1,89 @@
+﻿@using Microsoft.AspNetCore.Http
+@model DailyFoodItemList
+@{
+    ViewData["Title"] = "User Daily Foods";
+}
+
+<h2>Daily Foods</h2>
+<br />
+<section id="one" class="wrapper style2">
+    <div class="inner">
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Protein</th>
+                    <th>Carbs</th>
+                    <th>Fat</th>
+                </tr>
+            </thead>
+            @{
+                int totalProtein = 0;
+                int totalFat = 0;
+                int totalCarbs = 0; }
+
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>
+                        <a asp-controller="Food" asp-action="FoodDetail" asp-route-id="@item.FoodId">
+                            <input type="hidden" asp-for="@item.FoodId" />
+                            @item.FoodName
+                        </a>
+
+                    </td>
+                    <td>@item.Protein</td>
+                    <td>@item.Fat</td>
+                    <td>@item.Carbs</td>
+
+                    @{
+                        totalProtein += item.Protein;
+                        totalFat += item.Fat;
+                        totalCarbs += item.Carbs;
+                    }
+                </tr>
+            }
+            @if (Context.Session.GetString(SessionKeys.Username) != null)
+            {
+                <tfoot id="totals">
+                    <tr>
+                        <th>My Personal Goals:</th>
+                        <td>@Model.User.GoalProtein</td>
+                        <td>@Model.User.GoalCarbs</td>
+                        <td>@Model.User.GoalFat</td>
+
+                    </tr>
+                </tfoot>
+            }
+            <tfoot >
+                <tr>
+                    <th>Totals:</th>
+                    <td>@totalProtein</td>
+                    <td>@totalFat</td>
+                    <td>@totalCarbs</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</section>
+
+@*@if (Context.Session.GetString(SessionKeys.Username) != null)
+    {
+        <section id="one" class="wrapper style2">
+            <div class="inner">
+                <table>
+                                 <tfoot>
+                        <tr>
+                            <th>My Personal Goals:</th>
+                            <td>@Model.User.GoalProtein</td>
+                            <td>@Model.User.GoalCarbs</td>
+                            <td>@Model.User.GoalFat</td>
+
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+    }*@
+
+
